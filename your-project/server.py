@@ -39,14 +39,5 @@ def get_crop_by_geojson(date: int):
     return send_file(image_name, as_attachment=True)
 
 
-@app.route('/debug/drivers')
-def debug_drivers():
-    from osgeo import ogr
-    drivers = []
-    for i in range(ogr.GetDriverCount()):
-        drivers.append(ogr.GetDriver(i).GetName())
-    return {'drivers': drivers, 'memory_available': 'Memory' in drivers}
-
-
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5000)
